@@ -1,0 +1,13 @@
+[build]
+  # Install from package-lock.json first so react-scripts is always available
+  command = "npm install --legacy-peer-deps --no-audit --no-fund && npm run build"
+  # script.js moves the CRA output from build/ into docs/ after the build
+  publish = "docs"
+
+[build.environment]
+  NODE_VERSION = "22"
+  NPM_FLAGS = "--legacy-peer-deps"
+  # react-scripts 4 uses webpack 4, which needs the legacy OpenSSL provider on Node 17+
+  NODE_OPTIONS = "--openssl-legacy-provider"
+  # Keep lint warnings from failing the build under CI
+  CI = "false"
